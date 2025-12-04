@@ -11,6 +11,13 @@
     <button v-on:click="agregarEstudiante()">Agregar Estudiante</button>
     <h1>{{ arreglo[2] }}</h1>
 
+
+    <hr />
+    <label for="id_nombre_1">Nombre:</label>
+    <input id="id_nombre_1" type="text">
+    <label for="id_apellido_1">Apellido:</label>
+    <input v-on:keypress.enter="agregarEstudiante1" id="id_apellido_1" type="text">
+
     <ul>
         <li 
         v-show="nombre" 
@@ -66,10 +73,33 @@ export default {
             console.log("Se agrega el estudiante:");
             console.log(estu);
             this.arreglo.push(estu);
+            this.limpiarFormulario();
+            
+        
         },
+
+        agregarEstudiante1(event) {
+            console.log("Evento");
+            if (event.charCode !== 13) {
+                return;
+            }
+             const estu = {
+                nombre: document.getElementById("id_nombre_1").value,
+                apellido: document.getElementById("id_apellido_1").value,
+            };
+            console.log("Entro a agregar estudiante 1");
+            console.log("Presiono el ENTER");
+            console.log(estu);
+            this.arreglo.push(estu);
+            
+            console.log(event);
+            console.log(event.charCode);
+            this.limpiarFormulario();
+        },
+
         limpiarFormulario() {
-            this.nombre = null;
-            this.apellido = null;
+            this.nombre = "";
+            this.apellido = "";
         },  
         
     },
@@ -78,5 +108,4 @@ export default {
 </script>
 
 <style>
-
 </style>

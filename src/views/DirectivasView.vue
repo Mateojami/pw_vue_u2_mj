@@ -1,5 +1,9 @@
 <template>
+  <div class="view-container">
+    <h2>Prueba</h2>
     <Directivas />
+  </div>
+    
 </template>
 
 <script>
@@ -11,6 +15,15 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+/*Centrar contenido */
+.view-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h2 {
+    font-size: 50px;
+}
 </style>
