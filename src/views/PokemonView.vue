@@ -8,6 +8,9 @@
         </div>
 
     </div>
+
+    
+    <button @click="destruir">Destruir</button>
 </template>
 
 <script>
@@ -24,14 +27,46 @@ export default {
             pokemonArr: [],
             pokemonGanador: null,
             mostrarResultado: false,
-            esGanador: false
+            esGanador: false,
+            mostrar: true
             
         };
     },
+    /*Crea el componente */
+    beforeCreate(){
+        console.log("beforeCreate: apenas inicia la instancia del componente");
+
+    },
+    created(){
+        console.log("created: ya se resolvieron data, computed, methods, watch, una vez ejecutado eso se ejecuta el create");
+
+    },
+
+    /*Montaje del componente: cuando ya se renderiza o se visualiza el componente */
+    beforeMount(){
+        console.log("beforeMount: justo antes de renderizar el primer elemento html");
+    },
     mounted() {
-        console.log('Componente montado');
+        console.log('Componente montado: el componente ya esta renderizado');
         this.iniciarJuego();
     },
+
+    /*Actualizacion de un componente */
+    beforeUpdate(){
+        console.log("beforeUpdate: se ejecuta cuando hubo un cambio en data o props de un componente y vue esta por renderizar el cambio (justo antes de renderizar) ");
+    },
+    updated(){
+        console.log("updated: justo despues de actualizar, osea despues de la re-renderizacion");
+    },
+
+    /*Desmontaje de un componente */
+    beforeUnmount(){
+        console.log("beforeUnmount: justo antes de eliminar un componente");
+    },
+    unmounted(){
+        console.log("unmounted: justo despues de eliminar un componente, fue removido del DOM");
+    },
+
     methods: {
         async iniciarJuego(){
             this.pokemonArr = await obtenerPokemonFachada();
@@ -45,6 +80,9 @@ export default {
             this.mostrarResultado = true;
             this.esGanador = idGanador === this.pokemonGanador.id;
         },
+        destruir(){
+            this.pokemonGanador = null;
+        }
     }
 }
 </script>

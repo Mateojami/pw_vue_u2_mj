@@ -19,7 +19,14 @@ export default {
         srcImagen() {
             return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.pokemonId}.svg`;
         }
-    }
+    },
+    /*Desmontaje de un componente */
+    beforeUnmount(){
+        console.log("beforeUnmount: justo antes de eliminar un componente");
+    },
+    unmounted(){
+        console.log("unmounted: justo despues de eliminar un componente, fue removido del DOM");
+    },
     
 
 }
